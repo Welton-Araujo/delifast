@@ -1,9 +1,9 @@
 import './widgets/heading_auth.dart';
-import './register_page.dart';
 
+import './login_page.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
+class RegisterScreen extends StatelessWidget {  
   double _deviceWidth;
   double _deviceHeight;
 
@@ -32,8 +32,8 @@ class LoginScreen extends StatelessWidget {
           Container(
             height: 20,
           ),
-          _titleLogin(context),
-          Container(
+          _titleRegister(context),
+           Container(
             height: 5,
           ),
           _formLogin(context),
@@ -64,6 +64,7 @@ class LoginScreen extends StatelessWidget {
           ]),
       child: Column(
         children: [
+          _nameTextField(context),
           _emailTextField(context),
           _passwordTextField(context),
         ],
@@ -71,10 +72,29 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _emailTextField(context) {
+  Widget _nameTextField(context) {
     return TextFormField(
       autocorrect: false,
       autofocus: true,
+      style: TextStyle(color: Theme.of(context).primaryColor),
+      cursorColor: Theme.of(context).primaryColor,
+      decoration: InputDecoration(
+          border: UnderlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+          enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+          focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+          contentPadding: EdgeInsets.all(10),
+          hintText: 'Nome',
+          hintStyle: TextStyle(color: Theme.of(context).primaryColor)),
+    );
+  }
+
+  Widget _emailTextField(context) {
+    return TextFormField(
+      autocorrect: false,
+      autofocus: false,
       style: TextStyle(color: Theme.of(context).primaryColor),
       cursorColor: Theme.of(context).primaryColor,
       decoration: InputDecoration(
@@ -93,7 +113,7 @@ class LoginScreen extends StatelessWidget {
   Widget _passwordTextField(context) {
     return TextFormField(
       autocorrect: false,
-      autofocus: true,
+      autofocus: false,
       obscureText: true,
       style: TextStyle(color: Theme.of(context).primaryColor),
       cursorColor: Theme.of(context).primaryColor,
@@ -103,7 +123,7 @@ class LoginScreen extends StatelessWidget {
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
           contentPadding: EdgeInsets.all(10),
-          hintText: 'Password',
+          hintText: 'Senha',
           hintStyle: TextStyle(color: Theme.of(context).primaryColor)),
     );
   }
@@ -113,10 +133,10 @@ class LoginScreen extends StatelessWidget {
       width: _deviceWidth,
       child: MaterialButton(
         onPressed: () {
-          print('Login...');
+          print('registrando...');
         },
         color: Theme.of(context).primaryColor,
-        child: Text('LOGIN'),
+        child: Text('Cadastrar'),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       ),
     );
@@ -126,20 +146,20 @@ class LoginScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => RegisterScreen())
+          MaterialPageRoute(builder: (context) => LoginScreen())
         );
       },
       child: Text(
-        'Cadastrar-se',
+        'Já tem cadastro? Faça login',
         style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 18.2),
       ),
     );
   }
 
-  Widget _titleLogin(context) {
+  Widget _titleRegister(context) {
     return Container( 
       child: Text(
-        'Login',
+        'Cadastrar',
         style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 25),
       ),
     );
