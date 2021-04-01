@@ -114,6 +114,8 @@ class LoginScreen extends StatelessWidget {
       child: MaterialButton(
         onPressed: () {
           print('Login...');
+          Navigator.pushReplacementNamed(context, '/restaurants');
+
         },
         color: Theme.of(context).primaryColor,
         child: Text('LOGIN'),
@@ -125,9 +127,8 @@ class LoginScreen extends StatelessWidget {
   Widget _textRegister(context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => RegisterScreen())
-        );
+        //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => RegisterScreen()));
+        Navigator.pushReplacementNamed(context, '/register');
       },
       child: Text(
         'Cadastrar-se',
@@ -137,7 +138,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _titleLogin(context) {
-    return Container( 
+    return Container(
       child: Text(
         'Login',
         style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 25),

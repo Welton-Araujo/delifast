@@ -1,3 +1,7 @@
+import './screens/restaurants/restaurants_page.dart';
+
+import './screens/auth/register_page.dart';
+
 import './screens/auth/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -10,12 +14,17 @@ class FlutterFoodApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FlutterFood',
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(147, 70, 248, 1),
-        backgroundColor: Colors.white,
-        accentColor: Colors.black,
-        brightness: Brightness.dark
-      ),
-      home: LoginScreen(),
+          primaryColor: Color.fromRGBO(147, 70, 248, 1),
+          backgroundColor: Colors.white,
+          accentColor: Colors.black,
+          brightness: Brightness.dark),
+      initialRoute: '/login',
+      routes: <String, WidgetBuilder>{
+        '/login':(context) => LoginScreen(),
+        '/register':(context) => RegisterScreen(),
+        '/restaurants':(context) => RestaurantsPage(),
+
+      },
     );
   }
 }
