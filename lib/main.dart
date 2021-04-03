@@ -1,9 +1,9 @@
-import './screens/restaurants/restaurants_page.dart';
-
-import './screens/auth/register_page.dart';
+import 'package:flutter/material.dart';
 
 import './screens/auth/login_page.dart';
-import 'package:flutter/material.dart';
+import './screens/auth/register_page.dart';
+import './screens/restaurants/restaurants_page.dart';
+import './screens/foods/foods_page.dart';
 
 void main() => runApp(FlutterFoodApp());
 
@@ -23,6 +23,7 @@ class FlutterFoodApp extends StatelessWidget {
         '/login':(context) => LoginScreen(),
         '/register':(context) => RegisterScreen(),
         '/restaurants':(context) => RestaurantsPage(),
+        '/foods':(context) => FoodsScreen(),
 
       },
     );

@@ -1,6 +1,6 @@
 import './widgets/RestaurantCard.dart';
 
-import '../../models/restaurant.dart';
+import '../../models/Restaurant.dart';
 import 'package:flutter/material.dart';
 
 class RestaurantsPage extends StatefulWidget {
