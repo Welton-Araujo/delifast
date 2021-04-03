@@ -4,6 +4,7 @@ import '../../models/Category.dart';
 import '../../models/Food.dart';
 import './widgets/Categories.dart';
 import '../../widgets/food_card.dart';
+import '../../widgets/flutter_bottom_navigator.dart';
 
 class FoodsScreen extends StatefulWidget {
   @override
@@ -57,6 +58,7 @@ class _FoodsScreenState extends State<FoodsScreen> {
       ),
       backgroundColor: Theme.of(context).backgroundColor,
       body: _buildScreen(),
+      bottomNavigationBar: FlutterFoodBottomNavigator(0),
     );
   }
 
@@ -68,7 +70,7 @@ class _FoodsScreenState extends State<FoodsScreen> {
 
   Widget _buildFoods() {
     return Container(
-      height: (MediaQuery.of(context).size.height - 230),
+      height: (MediaQuery.of(context).size.height - 190),
       width: MediaQuery.of(context).size.width,
       //color: Colors.black,
       child: ListView.builder(

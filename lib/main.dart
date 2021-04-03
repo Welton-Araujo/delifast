@@ -14,7 +14,7 @@ class FlutterFoodApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'FlutterFood',
       theme: ThemeData(
-          primaryColor: Color.fromRGBO(147, 70, 248, 1),
+          primaryColor: Color.fromRGBO(255, 0, 0, 1),
           backgroundColor: Colors.white,
           accentColor: Colors.black,
           brightness: Brightness.dark),
