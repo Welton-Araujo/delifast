@@ -18,8 +18,8 @@ class CartScreen extends StatelessWidget {
     return Column(
       children: [
         _buildHeader(),
-        _buildCartList(context),
-        //_buildFormComment(),
+        Expanded(child: _buildCartList(context)),
+        _buildFormComment(context),
         //_buttonCheckout(),
       ],
     );
@@ -37,37 +37,55 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget _buildCartList(context) {
-    return Container(
-      //color: Colors.amber,
-      height: (MediaQuery.of(context).size.height - 175),
-      child: ListView.builder(
-        itemCount: 6,
-        itemBuilder: (context, index) => _buildCartItem(context),
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      primary: false,
+      itemCount: 6,
+      itemBuilder: (context, index) => _buildCartItem(context),
     );
   }
 
   Widget _buildCartItem(context) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      height: 80,
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        border: Border.all(color: Colors.grey[200]),
-        borderRadius: BorderRadius.all(
-          Radius.circular(16),
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.all(10),
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade100,
+            border: Border.all(color: Colors.grey[200]),
+            borderRadius: BorderRadius.all(
+              Radius.circular(16),
+            ),
+          ),
+          child: Container(
+            padding: EdgeInsets.all(2),
+            child: Row(
+              children: [
+                ShowImageCachedNetwork(
+                    'https://blog.praticabr.com/wp-content/uploads/2020/01/314771-8-passos-essenciais-para-montar-um-cardapio-de-pizzaria.jpg'),
+                _showDetailItemCart(context),
+              ],
+            ),
+          ),
         ),
-      ),
-      child: Container(
-        padding: EdgeInsets.all(2),
-        child: Row(
-          children: [
-            ShowImageCachedNetwork(
-                'https://blog.praticabr.com/wp-content/uploads/2020/01/314771-8-passos-essenciais-para-montar-um-cardapio-de-pizzaria.jpg'),
-            _showDetailItemCart(context),
-          ],
-        ),
-      ),
+        Align(
+          alignment: Alignment.topRight,
+          child: Container(
+            height: 24,
+            width: 24,
+            margin: EdgeInsets.only(top: 2, right: 4),
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(100))),
+            child: Icon(
+              Icons.close,
+              size: 20,
+              color: Colors.white,
+            ),
+          ),
+        )
+      ],
     );
   }
 
@@ -82,7 +100,10 @@ class CartScreen extends StatelessWidget {
             Text(
               'Pizza Hut',
               maxLines: 2,
-              style: TextStyle(fontSize: 16, color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 16,
+                  color: Theme.of(context).primaryColor,
+                  fontWeight: FontWeight.bold),
             ),
             Container(height: 6),
             Container(
@@ -93,11 +114,14 @@ class CartScreen extends StatelessWidget {
                   Container(
                     child: Row(
                       children: [
-                        Icon(Icons.remove, size: 24, color: Colors.grey.shade700),
+                        Icon(Icons.remove,
+                            size: 24, color: Colors.grey.shade700),
                         Container(
-                          padding: EdgeInsets.only(top: 4,bottom: 4, left: 12, right: 12),
+                          padding: EdgeInsets.only(
+                              top: 4, bottom: 4, left: 12, right: 12),
                           color: Theme.of(context).primaryColor,
-                          child: Text('2', style: TextStyle(color: Colors.white)),
+                          child:
+                              Text('2', style: TextStyle(color: Colors.white)),
                         ),
                         Icon(Icons.add, size: 24, color: Colors.grey.shade700),
                       ],
@@ -108,6 +132,31 @@ class CartScreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildFormComment(context) {
+    return Container(
+      padding: EdgeInsets.all(8),
+      child: TextFormField(
+        autocorrect: true,
+        style: TextStyle(color: Theme.of(context).primaryColor),
+        cursorColor: Theme.of(context).primaryColor,
+        onSaved: (value) {
+          print(value);
+        },
+        decoration: InputDecoration(
+            labelText: 'Comentário (ex: sem cebola)',
+            labelStyle: TextStyle(color: Theme.of(context).primaryColor),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(color: Theme.of(context).primaryColor)),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: BorderSide(
+                  color: Theme.of(context).primaryColor,
+                ))),
       ),
     );
   }
