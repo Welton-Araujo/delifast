@@ -4,11 +4,11 @@ class HeadingAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 130,
-      width: 130,
+      height: 110,
+      width: 110,
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/IconeFlutterFood.png'),
+              image: AssetImage('assets/images/fast.png'),
               fit: BoxFit.fill)),
     );
   }

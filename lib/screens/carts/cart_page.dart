@@ -15,12 +15,14 @@ class CartScreen extends StatelessWidget {
   }
 
   Widget _buildContentCart(context) {
-    return Column(
+    return ListView(
+      shrinkWrap: false,
       children: [
         _buildHeader(),
-        Expanded(child: _buildCartList(context)),
+        _buildCartList(context),
+        _buildTextTotalCart(),
         _buildFormComment(context),
-        //_buttonCheckout(),
+        _buttonCheckout(context),
       ],
     );
   }
@@ -136,6 +138,12 @@ class CartScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildTextTotalCart(){
+    return Container(
+      margin: EdgeInsets.only(left: 10, right: 10, top: 26, bottom: 16),
+      child: Text("Preço total: R\$ 499,99", style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold)));
+  }
+
   Widget _buildFormComment(context) {
     return Container(
       padding: EdgeInsets.all(8),
@@ -157,6 +165,33 @@ class CartScreen extends StatelessWidget {
                 borderSide: BorderSide(
                   color: Theme.of(context).primaryColor,
                 ))),
+      ),
+    );
+  }
+
+  _buttonCheckout(context) {
+    return Container(
+      padding: EdgeInsets.all(10),
+      child: ElevatedButton(
+        onPressed: () {
+          print('checkout');
+        },
+        child: Text('Finalizar Pedido'),
+        style: ElevatedButton.styleFrom(
+          primary: Colors.orange[600],
+          onPrimary: Colors.white,
+          shadowColor: Colors.grey,
+          padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 12),
+          shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(20.0)),
+          elevation: 4,
+          textStyle: TextStyle(
+            fontSize: 20,
+          )
+
+          //shape: const BeveledRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(16))),
+        ),
+        //color: Colors.transparent,
+        //elevation: 0,
       ),
     );
   }
