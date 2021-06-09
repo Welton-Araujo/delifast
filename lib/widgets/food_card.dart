@@ -7,9 +7,10 @@ class FoodCard extends StatelessWidget {
   String description;
   String price;
   String image;
+  bool notShowIconCart;
 
   FoodCard(
-      {this.identify, this.title, this.description, this.price, this.image});
+      {this.identify, this.title, this.description, this.price, this.image, this.notShowIconCart});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,28 +38,28 @@ class FoodCard extends StatelessWidget {
   }
 
   Widget _buildImageFood() {
-    return  Container(
-        width: 80,
-        height: 80,
-        margin: EdgeInsets.only(right: 8),
-        child: ClipOval(
-          //child: Image.asset('assets/images/IconeFlutterFood.png'),
-          child: CachedNetworkImage(
-            imageUrl: image != ''
-                ? image
-                : 'https://blog.praticabr.com/wp-content/uploads/2020/01/314771-8-passos-essenciais-para-montar-um-cardapio-de-pizzaria.jpg',
-            placeholder: (context, url) => Container(
-              height: 80,
-              width: 80,
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            ),
-            errorWidget: (context, url, error) => Center(
-              child: Icon(Icons.error),
+    return Container(
+      width: 80,
+      height: 80,
+      margin: EdgeInsets.only(right: 8),
+      child: ClipOval(
+        //child: Image.asset('assets/images/IconeFlutterFood.png'),
+        child: CachedNetworkImage(
+          imageUrl: image != ''
+              ? image
+              : 'https://blog.praticabr.com/wp-content/uploads/2020/01/314771-8-passos-essenciais-para-montar-um-cardapio-de-pizzaria.jpg',
+          placeholder: (context, url) => Container(
+            height: 80,
+            width: 80,
+            child: Center(
+              child: CircularProgressIndicator(),
             ),
           ),
+          errorWidget: (context, url, error) => Center(
+            child: Icon(Icons.error),
+          ),
         ),
+      ),
     );
   }
 
@@ -91,7 +92,7 @@ class FoodCard extends StatelessWidget {
   }
 
   Widget _buildButtonCart(context) {
-    return Container(
+    return notShowIconCart ? Container() : Container(
       child: IconTheme(
         data: IconThemeData(
           color: Theme.of(context).primaryColor,

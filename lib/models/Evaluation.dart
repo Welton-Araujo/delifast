@@ -3,7 +3,7 @@ import 'dart:convert';
 class Evaluation {
   String nameUser;
   String comment;
-  String stars;
+  double stars;
 
 
   Evaluation({this.nameUser, this.comment, this.stars});
