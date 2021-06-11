@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -40,7 +39,7 @@ class OrderDetailsScreen extends StatelessWidget {
           title: 'lasanha'),
     ],
     evaluation: [
-      Evaluation(
+     /*  Evaluation(
         comment: 'Pedido muito bom',
         nameUser: 'Carlos',
         stars: 4,
@@ -49,7 +48,7 @@ class OrderDetailsScreen extends StatelessWidget {
         comment: 'Pedido excelente',
         nameUser: 'Pedro',
         stars: 5,
-      )
+      ) */
     ],
   );
 
@@ -93,7 +92,7 @@ class OrderDetailsScreen extends StatelessWidget {
                   color: Colors.black,
                   fontSize: 22,
                   fontWeight: FontWeight.bold)),
-          _buildEvaluationsOrder()
+          _buildEvaluationsOrder(context)
         ],
       ),
     );
@@ -134,17 +133,34 @@ class OrderDetailsScreen extends StatelessWidget {
         });
   }
 
-  _buildEvaluationsOrder() {
-    return Container(
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: _order.evaluation.length,
-        itemBuilder: (context, index) {
-          final Evaluation evaluation = _order.evaluation[index];
-          return _buildEvaluationItem(evaluation, context);
-        },
-      ),
-    );
+  _buildEvaluationsOrder(context) {
+    return _order.evaluation.length > 0
+        ? Container(
+          padding: EdgeInsets.only(left: 10),
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: _order.evaluation.length,
+              itemBuilder: (context, index) {
+                final Evaluation evaluation = _order.evaluation[index];
+                return _buildEvaluationItem(evaluation, context);
+              },
+            ),
+          )
+        : Container(
+          height: 40,
+          margin: EdgeInsets.only(bottom: 30, top: 10),
+            child: RaisedButton(onPressed: () {
+              Navigator.pushNamed(context, '/evaluation_order');
+            },
+            color: Colors.orange,
+            elevation: 2.2,
+            child: Text('Avaliar Pedido'),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+              side: BorderSide(color: Colors.orangeAccent)
+            ),
+          ),
+        );
   }
 
   _buildEvaluationItem(Evaluation evaluation, context) {
@@ -153,10 +169,9 @@ class OrderDetailsScreen extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: Colors.grey[50],
-          border: Border.all(color: Colors.grey[100]),
-          borderRadius: BorderRadius.all(Radius.circular(4))
-        ),
+            color: Colors.grey[50],
+            border: Border.all(color: Colors.grey[100]),
+            borderRadius: BorderRadius.all(Radius.circular(4))),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -184,7 +199,8 @@ class OrderDetailsScreen extends StatelessWidget {
                 Text(
                   evaluation.comment,
                   style: TextStyle(
-                      color: Colors.black,),
+                    color: Colors.black,
+                  ),
                 ),
               ],
             ),
